@@ -56,6 +56,8 @@ Time Complexity (Big-O)
 =====================================
 """
 
+from collections import deque
+
 
 class BinarySearchTreeNode:
     """Class to represent a Binary Search Tree (BST)"""
@@ -159,6 +161,22 @@ class BinarySearchTreeNode:
         result.append(self.data)
         return result
 
+    def breadth_first_traversal(self):
+        results = []
+        queue = deque([self])
+
+        while queue:
+            node = queue.popleft()
+            results.append(node.data)
+
+            if node.left:
+                queue.append(node.left)
+
+            if node.right:
+                queue.append(node.right)
+
+        return results
+
 
 # ================================
 # Example Usage of BST
@@ -173,9 +191,10 @@ if __name__ == "__main__":
     for i in arr[1:]:
         root.add_child(i)
 
-    print("In order Traversal (sorted):", root.in_order_traversal())
-    print("Pre order Traversal:", root.pre_order_traversal())
-    print("Post order Traversal:", root.post_order_traversal())
+    print("Breadth-First Traversal:", root.breadth_first_traversal())
+    print("DFS --> In order Traversal (sorted):", root.in_order_traversal())
+    print("DFS --> Pre order Traversal:", root.pre_order_traversal())
+    print("DFS --> Post order Traversal:", root.post_order_traversal())
     print("Search 88:", root.search(88))
     print("Minimum:", root.find_min())
     print("Maximum:", root.find_max())
