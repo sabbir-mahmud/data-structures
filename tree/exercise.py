@@ -1,3 +1,106 @@
+r"""
+==================================================
+Tree Exercise: Organization Chart (ট্রি অনুশীলন) - Bilingual DSA Reference (10/10)
+==================================================
+
+The Problem (সমস্যাটি কী?)
+--------------------------------------------------
+- Build a company hierarchy using a General Tree. (General Tree দিয়ে একটি কোম্পানির স্তরবিন্যাস তৈরি করো।)
+- Each node stores TWO values: name and designation. (প্রতিটি Node-এ দুইটি মান থাকে: name এবং designation।)
+- print() must be able to show name only, designation only, or both. (print() শুধু নাম, শুধু পদবি, অথবা দুটোই দেখাতে পারবে।)
+
+--------------------------------------------------
+The Tree We Are Building (যে Tree টি বানাচ্ছি)
+--------------------------------------------------
+
+                      [CEO]
+             /       /      \        \
+        [CTO]     [COO]    [PM 1]   [PM 2]
+        /   \      /   \     /   \      |
+   [Lead][Lead] [HR][Ops][TL][TL]   [TL]
+     |     |      |    |    |   |     |
+  (Devs)(Devs) (Staff)(Staff)(Devs) (Devs)
+
+- The root is the CEO (level 0). (Root হলো CEO, Level 0।)
+- Every employee is a child of their manager. (প্রতিটি কর্মী তার ম্যানেজারের সন্তান।)
+- Interns and developers are the leaves. (Intern ও Developer-রা হলো পাতা।)
+
+--------------------------------------------------
+Why a Multi-Field Node (একাধিক ফিল্ডের Node কেন)
+--------------------------------------------------
++--------+-------------+--------+------------+
+|  name  | designation | parent |  children  |
++--------+-------------+--------+------------+
+
+- A tree node can carry as many fields as the problem needs. (সমস্যার প্রয়োজনে Node-এ যত খুশি ফিল্ড রাখা যায়।)
+- Only parent and children define the STRUCTURE; the rest is payload. (গঠন ঠিক করে শুধু parent আর children; বাকিগুলো হলো ডেটা।)
+- This is exactly how real systems store employee, file or category records. (আসল সিস্টেমে কর্মী, ফাইল বা ক্যাটাগরির তথ্য ঠিক এভাবেই রাখা হয়।)
+
+--------------------------------------------------
+How the Recursive print() Works (Recursive print কীভাবে চলে)
+--------------------------------------------------
+Step 1: Build the text based on the requested type. (কোন ধরন চাওয়া হয়েছে সেই অনুযায়ী লেখা তৈরি করো।)
+Step 2: Indent using get_level() so depth is visible. (get_level() দিয়ে ফাঁকা জায়গা দাও, যাতে গভীরতা বোঝা যায়।)
+Step 3: Print, then call print() on every child. (নিজে প্রিন্ট করো, তারপর প্রতিটি সন্তানের জন্য একই কাজ করো।)
+
+CEO
+ |__CTO
+   |__Dev Lead
+     |__Backend Developer
+
+- The type argument is passed DOWN to every child. (type আর্গুমেন্টটি প্রতিটি সন্তানের কাছে পাঠাতে হয়।)
+- Forgetting to pass it makes children fall back to the default. (না পাঠালে সন্তানরা Default মানেই ফিরে যাবে।)
+- This is DFS: it finishes an entire branch before starting the next. (এটি DFS: একটি শাখা পুরো শেষ করে তারপর পরেরটিতে যায়।)
+
+--------------------------------------------------
+Real-World Applications (বাস্তব ক্ষেত্রে ব্যবহার)
+--------------------------------------------------
+This exact pattern (a node with payload + hierarchy) is used in:
+- HR systems and org charts (কে কার অধীনে কাজ করে)
+- Permission and role inheritance (a manager inherits a team's access)
+- Bill of Materials in manufacturing (product -> parts -> sub-parts)
+- Comment threads with replies
+- Nested category trees in e-commerce
+- Company reporting chains and approval workflows
+- Any "who reports to whom" or "what contains what" model
+
+--------------------------------------------------
+Interview Tips (ইন্টারভিউ টিপস)
+--------------------------------------------------
+Always explain:
+1. Why an org chart is a natural General Tree (Any number of reports per manager).
+2. Why get_level() is used for indentation (It measures depth from the root).
+3. Why printing is O(n) (Every node is visited exactly once).
+4. Why the recursive parameter must be forwarded to children.
+5. How you would extend this to search for an employee (DFS over all nodes, O(n)).
+
+--------------------------------------------------
+Common Mistakes (সাধারণ ভুল)
+--------------------------------------------------
+❌ Forgetting to pass type=type in the recursive call.
+✔ Children would silently print in the default format.
+
+❌ Forgetting child.parent = self inside add_child.
+✔ get_level() would always return 0 and indentation would break.
+
+❌ Naming a method print() and expecting the builtin.
+✔ Inside the class, self.print() calls YOUR method, which shadows nothing globally but can confuse readers.
+
+--------------------------------------------------
+Complexity Summary
+--------------------------------------------------
+| Operation      | Complexity | Why?                                |
+|----------------|------------|-------------------------------------|
+| add_child      | O(1)       | Appends to the children list        |
+| get_level      | O(h)       | Walks up the parent chain           |
+| print (whole)  | O(n)       | Visits every node once              |
+| Search a name  | O(n)       | No ordering rule exists             |
+| Space          | O(n)       | One node object per employee        |
+
+==================================================
+"""
+
+
 class TreeNode:
     def __init__(self, name, designation):
         self.name = name

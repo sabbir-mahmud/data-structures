@@ -127,7 +127,20 @@ Capacity = 4, Size = 4
 
 Append(5) -> Current array is full. Python allocates a larger block of memory. (অ্যারে ফুল হলে বড় মেমরি ব্লক নেয়।)
 
-Python usually grows the capacity by about 1.125x (not exactly double).
+CPython does NOT simply double. The real formula is: (CPython শুধু দ্বিগুণ করে না, আসল সূত্রটি হলো:)
+
+    new_capacity = (new_size + (new_size >> 3) + 6) rounded down to a multiple of 4
+
+- The (new_size >> 3) part is what gives the famous ~1.125x growth. (এই অংশটিই বিখ্যাত ~1.125x বৃদ্ধি দেয়।)
+- The + 6 constant makes SMALL lists grow much faster than 1.125x. (কিন্তু + 6 অংশটি ছোট List-কে 1.125x-এর চেয়ে অনেক দ্রুত বাড়ায়।)
+- So 1.125x is only the ASYMPTOTIC rate, true for large lists. (তাই 1.125x শুধু বড় List-এর ক্ষেত্রে প্রযোজ্য।)
+
+Real CPython capacity sequence: (আসল CPython Capacity ক্রম:)
+    0, 4, 8, 16, 24, 32, 40, 52, 64, 76, 92, ...
+       ^--^--^  small lists nearly double (ছোট List প্রায় দ্বিগুণ হয়)
+                  later growth slows to ~1.125x (পরে বৃদ্ধি কমে ~1.125x হয়)
+
+Here size 4 is full, so new_size = 5 -> (5 + 0 + 6) = 11 -> rounded to 8. (তাই Capacity 4 থেকে 8 হয়।)
 +----+----+----+----+----+----+----+----+
 | 1  | 2  | 3  | 4  |    |    |    |    |
 +----+----+----+----+----+----+----+----+
@@ -160,10 +173,19 @@ Worst Case: Insert at beginning (শুরুতে বসালে) -> All elem
 Therefore, Time Complexity = O(n).
 
 --------------------------------------------------
-Static vs Dynamic Arrays
+Static vs Dynamic Arrays (স্ট্যাটিক বনাম ডায়নামিক অ্যারে)
 --------------------------------------------------
-Static Array: Fixed size, Memory allocated once, Cannot grow, Fast.
-Dynamic Array: Grows automatically, Allocates extra unused space, Copies elements during resize.
+Static Array: Fixed size, memory allocated once, cannot grow. (নির্দিষ্ট সাইজ, একবারই মেমরি বরাদ্দ হয়, বড় করা যায় না।)
+Dynamic Array: Grows automatically, keeps spare capacity, copies on resize. (নিজে থেকেই বড় হয়, বাড়তি জায়গা রাখে, Resize-এর সময় কপি করে।)
+
+| Feature          | Static Array (C/C++) | Dynamic Array (Python list) |
+|------------------|----------------------|-----------------------------|
+| Size             | Fixed at compile time| Grows at runtime            |
+| Resize           | Not possible         | Automatic                   |
+| Extra capacity   | None                 | Yes (spare slots)           |
+| Append cost      | N/A                  | O(1) amortized              |
+| Memory overhead  | Lowest               | Higher (unused slots)       |
+| Speed            | Fastest              | Slightly slower             |
 
 --------------------------------------------------
 Array vs Linked List (পার্থক্য)

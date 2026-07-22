@@ -1,3 +1,129 @@
+"""
+==================================================
+Tree Exercise: Level Based Print (স্তরভিত্তিক প্রিন্ট) - Bilingual DSA Reference (10/10)
+==================================================
+
+The Problem (সমস্যাটি কী?)
+--------------------------------------------------
+- Build a location hierarchy: Earth -> Country -> State -> District -> City. (একটি অবস্থানভিত্তিক স্তরবিন্যাস তৈরি করো।)
+- print(level) must display the tree ONLY up to the given depth. (print(level) শুধু নির্দিষ্ট গভীরতা পর্যন্ত Tree দেখাবে।)
+- Deeper nodes must be cut off, not printed. (তার চেয়ে গভীরের Node গুলো বাদ যাবে।)
+
+--------------------------------------------------
+The Tree We Are Building (যে Tree টি বানাচ্ছি)
+--------------------------------------------------
+
+[Earth]                                 <- Level 0
+ |__[Bangladesh]                        <- Level 1
+ |    |__[Dhaka Division]               <- Level 2
+ |    |    |__[Dhaka District]          <- Level 3
+ |    |         |__[Dhaka City]         <- Level 4
+ |    |__[Chittagong Division]
+ |__[Pakistan]
+ |__[Malaysia]
+
+- Each level is a smaller administrative unit. (প্রতিটি স্তর একটি ছোট প্রশাসনিক এলাকা।)
+- This is a General Tree: any number of children per node. (এটি General Tree: প্রতিটি Node-এর যত খুশি সন্তান থাকতে পারে।)
+
+--------------------------------------------------
+How Level Cutting Works (স্তর কেটে ফেলা কীভাবে কাজ করে)
+--------------------------------------------------
+Every node knows its own depth via get_level(). (প্রতিটি Node get_level() দিয়ে নিজের গভীরতা জানে।)
+
+    if this node's level == the limit:
+        stop -> do NOT recurse into children
+    else:
+        recurse into every child
+
+print(1)                 print(3)
+[Earth]                  [Earth]
+ |__[Bangladesh]          |__[Bangladesh]
+ |__[Pakistan]            |    |__[Dhaka Division]
+ |__[Malaysia]            |    |    |__[Dhaka District]
+                          |    ...
+
+- The node itself is always printed; only its CHILDREN are cut. (Node নিজে সবসময় প্রিন্ট হয়, শুধু তার সন্তানরা বাদ যায়।)
+- So print(k) shows every node whose level is <= k. (তাই print(k) সব Node দেখায় যাদের Level k বা তার কম।)
+- The limit is passed DOWN unchanged to every child. (সীমাটি অপরিবর্তিতভাবে প্রতিটি সন্তানের কাছে পাঠানো হয়।)
+
+* The cutoff check does not depend on the child, so it could be moved above the loop - same result, slightly clearer. (এই চেক সন্তানের উপর নির্ভর করে না, তাই লুপের আগেও রাখা যেত - ফল একই, পড়তে সহজ।)
+
+--------------------------------------------------
+Indentation Logic (ফাঁকা জায়গার হিসাব)
+--------------------------------------------------
+indent = " " * get_level() * 4      (৪ গুণ Level সমান ফাঁকা জায়গা।)
+prefix = "|__" if the node has a parent else ""   (Root ছাড়া সবার আগে |__ বসে।)
+
+Level 0 ->              Earth
+Level 1 ->     |__Bangladesh
+Level 2 ->         |__Dhaka Division
+
+- Depth becomes visible purely through spacing. (শুধু ফাঁকা জায়গা দিয়েই গভীরতা বোঝা যায়।)
+- The root has no parent, so it gets no prefix. (Root-এর Parent নেই, তাই তার আগে কিছু বসে না।)
+
+--------------------------------------------------
+This is DFS with a Depth Limit (গভীরতা-সীমাসহ DFS)
+--------------------------------------------------
+- Plain DFS goes as deep as the tree allows. (সাধারণ DFS যতদূর সম্ভব গভীরে যায়।)
+- Depth-Limited DFS stops at a fixed depth. (Depth-Limited DFS নির্দিষ্ট গভীরতায় থেমে যায়।)
+- BFS would print level by level instead, using a queue. (BFS এর বদলে Queue দিয়ে স্তরে স্তরে প্রিন্ট করত।)
+
+DFS order  : Earth, Bangladesh, Dhaka Div, Dhaka Dist, Dhaka City, ...
+BFS order  : Earth | Bangladesh, Pakistan, Malaysia | Dhaka Div, ...
+
+- Iterative Deepening Search (used in game AI) is built on exactly this idea. (গেম AI-তে ব্যবহৃত Iterative Deepening এই ধারণার উপরেই তৈরি।)
+
+--------------------------------------------------
+Real-World Applications (বাস্তব ক্ষেত্রে ব্যবহার)
+--------------------------------------------------
+Depth-limited tree printing is used in:
+- `tree -L 2` style directory listings
+- Collapsible file explorers and category menus
+- Rendering only visible levels of a large DOM
+- Location pickers (Country -> State -> City)
+- Game AI search with a move-depth limit
+
+--------------------------------------------------
+Interview Tips (ইন্টারভিউ টিপস)
+--------------------------------------------------
+Always explain:
+1. That this is DFS with a depth limit, not BFS.
+2. Why get_level() (O(h)) is what makes both indentation and cutting possible.
+3. Why the limit must be forwarded in the recursive call.
+4. How BFS with a queue would solve the same problem level by level.
+5. That printing k levels costs O(number of nodes within those k levels).
+
+--------------------------------------------------
+Common Mistakes (সাধারণ ভুল)
+--------------------------------------------------
+❌ Forgetting to pass level=level to children.
+✔ Children would reset to the default limit and print too much.
+
+❌ Confusing "print up to level k" with "print only level k".
+✔ This version prints every node whose level is <= k.
+
+❌ Calling get_level() repeatedly inside a hot loop.
+✔ Each call is O(h); store it in a variable when reused.
+
+❌ Forgetting child.parent = self in add_child.
+✔ get_level() would return 0 for everything and all cutting would break.
+
+--------------------------------------------------
+Complexity Summary
+--------------------------------------------------
+| Operation       | Complexity | Why?                                  |
+|-----------------|------------|---------------------------------------|
+| add_child       | O(1)       | Appends to the children list          |
+| get_level       | O(h)       | Walks up the parent chain             |
+| print (full)    | O(n)       | Visits every node once                |
+| print (level k) | O(n_k)     | Only nodes within the first k levels  |
+| Space           | O(n)       | One node object per location          |
+| Recursion Stack | O(h)       | One frame per level of depth          |
+
+==================================================
+"""
+
+
 class TreeNode:
     """Class to represent a node in a tree"""
 
