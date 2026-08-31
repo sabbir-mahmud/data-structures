@@ -1,0 +1,62 @@
+Big O Time Complexity?
+
+English:
+Big O notation describes how the time or space required by an algorithm grows as the input size n increases.
+
+বাংলা (BN):
+Big O notation বোঝায় input size n বাড়ার সাথে সাথে কোনো algorithm-এর time বা space requirement কীভাবে বৃদ্ধি পায়।
+
+Complexity Types:
+
+O(1) — Constant
+English: Time remains constant regardless of input size.
+বাংলা: Input size বাড়লেও সময় প্রায় একই থাকে।
+
+O(log n) — Logarithmic
+English: Time grows slowly as input increases.
+বাংলা: Input বাড়লেও সময় ধীরে বৃদ্ধি পায়।
+
+O(√n) — Square Root
+English: Time grows according to the square root of n.
+বাংলা: সময় n-এর square root অনুযায়ী বৃদ্ধি পায়।
+
+O(n) — Linear
+English: Time grows directly with input size.
+বাংলা: Input যত বাড়ে, সময়ও প্রায় তত বাড়ে।
+
+O(n log n) — Linearithmic
+English: Common in efficient sorting algorithms.
+বাংলা: Efficient sorting algorithm-এ সাধারণত দেখা যায়।
+
+O(n²) — Quadratic
+English: Time grows with the square of input size.
+বাংলা: সময় n² অনুযায়ী বৃদ্ধি পায়।
+
+O(n³) — Cubic
+English: Time grows with the cube of input size.
+বাংলা: সময় n³ অনুযায়ী বৃদ্ধি পায়।
+
+O(2ⁿ) — Exponential
+English: Time grows exponentially as input size increases.
+বাংলা: Input বাড়ার সাথে সময় exponential হারে বৃদ্ধি পায়।
+
+O(n!) — Factorial
+English: Time grows extremely fast with input size.
+বাংলা: Input বাড়লে সময় অত্যন্ত দ্রুত বৃদ্ধি পায়।
+
+O(nⁿ) — Power Exponential
+English: Time grows as n raised to the power of n.
+বাংলা: সময় nⁿ হারে বৃদ্ধি পায়।
+
+Complexity Order — Fastest → Slowest
+
+O(1) → O(log n) → O(√n) → O(n) → O(n log n) → O(n²) → O(n³) → O(2ⁿ) → O(n!) → O(nⁿ)
+
+English:
+Generally, when the input becomes large, complexities on the left are more efficient and complexities on the right are more expensive.
+
+বাংলা:
+সাধারণভাবে input বড় হলে বাম দিকের complexity বেশি efficient এবং ডান দিকের complexity বেশি expensive।
+
+Note:
+These are common Big O growth classes, not an exhaustive list. There are also forms such as O(log log n), O(n + m), O(n² + n), etc.

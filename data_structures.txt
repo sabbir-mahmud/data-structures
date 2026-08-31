@@ -1,0 +1,7 @@
+### What is Data Structure?
+
+**English:**
+A data structure is a way of organizing and managing data in a computer so that it can be accessed and modified efficiently. We use data structures to store data efficiently and perform operations such as **searching, sorting, inserting, and deleting** efficiently.
+
+**বাংলা (BN):**
+Data Structure হলো কম্পিউটারে ডেটাকে এমনভাবে **সংগঠিত ও পরিচালনা করার পদ্ধতি**, যাতে ডেটা সহজে এবং দক্ষতার সাথে **access ও modify** করা যায়। Data Structure ব্যবহার করে ডেটা efficiently store করা হয় এবং **searching, sorting, inserting, এবং deleting**-এর মতো operation দক্ষতার সাথে করা যায়।
