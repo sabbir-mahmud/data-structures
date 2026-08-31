@@ -1,254 +1,76 @@
 """
-==================================================
-Array (অ্যারে) Notes - Bilingual DSA Reference (10/10)
-==================================================
+## What is an Array?
 
-What is an Array? (Array কী?)
---------------------------------------------------
-- An array is a contiguous block of memory used to store multiple elements. (Array হলো মেমরির একটি পরপর বা Contiguous অংশ, যেখানে একাধিক ডেটা সংরক্ষণ করা হয়।)
-- Every element can be accessed using its index. (প্রতিটি ডেটা Index ব্যবহার করে অ্যাক্সেস করা যায়।)
-- Traditional arrays store elements of the same data type. (সাধারণত একই ধরণের ডেটা রাখা হয়।)
+English:
+An array is a contiguous block of memory used to store multiple elements. Each element can be accessed using an index. Traditional arrays usually store elements of the same data type. However, Python's list can store elements of different data types.
 
-Python Array (Python-এ Array)
---------------------------------------------------
-- Python's most common array-like structure is the list. (Python-এ সবচেয়ে বেশি ব্যবহৃত Array-এর মতো Data Structure হলো List।)
-- A Python list is a Dynamic Array.
-- Unlike C/C++ arrays, Python lists store references (pointers) to Python objects, not the actual objects themselves. (Python List মূল ডেটার Reference বা Pointer সংরক্ষণ করে।)
-- Lists automatically grow and shrink as needed.
+বাংলা (BN):
+Array হলো memory-এর একটি contiguous block, যেখানে একাধিক element store করা হয়। প্রতিটি element-কে index ব্যবহার করে access করা যায়। Traditional array সাধারণত একই data type-এর element store করে। তবে Python-এর list-এ বিভিন্ন data type-এর element store করা যায়।
 
---------------------------------------------------
-Size vs Capacity (Size বনাম Capacity)
---------------------------------------------------
-Size:
-- Number of elements currently stored in the array. (বর্তমানে অ্যারেতে কয়টি এলিমেন্ট আছে।)
+---
 
-Capacity:
-- Total number of elements that can be stored before resizing. (মেমরিতে মোট কতটি জায়গা বরাদ্দ আছে।)
+## Types of Array
 
-Example:
-Size = 5
-Capacity = 8
+Arrays are commonly divided into two types:
 
-+----+----+----+----+----+----+----+----+
-| 1  | 2  | 3  | 4  | 5  |    |    |    |
-+----+----+----+----+----+----+----+----+
-Used = 5
-Free = 3
+### 1. Static Array
 
-Python reserves extra memory so appending new elements usually doesn't require resizing immediately. (Python অতিরিক্ত মেমরি Reserve করে রাখে যাতে বারবার Resize করতে না হয়।)
+English:
+A static array has a fixed capacity. Once its capacity is full, adding a new element can raise an error or require creating a new array.
 
---------------------------------------------------
-How Data is Stored in Memory (মেমরিতে ডেটা কীভাবে সংরক্ষণ হয়)
---------------------------------------------------
-Traditional Array (C/C++)
+বাংলা (BN):
+Static array-এর capacity fixed থাকে। Capacity পূর্ণ হয়ে গেলে নতুন element add করলে error হতে পারে অথবা নতুন array তৈরি করতে হয়।
 
-Index :  0    1    2    3
-Value : 10   20   30   40
+### 2. Dynamic Array
 
-Memory:
-+----+----+----+----+
-|10  |20  |30  |40  |
-+----+----+----+----+
+English:
+A dynamic array can automatically resize when its capacity becomes full. It allocates a larger memory block and copies the existing elements into the new memory.
 
-- Elements are stored one after another (contiguous memory). (ডেটা মেমরিতে পরপর থাকে।)
-- Address of any element is calculated using:
+A common growth strategy is:
+New Capacity = Old Capacity + (Old Capacity × 2)
 
-Address = Base Address + (Index × Element Size)
+However, Python's list uses a more sophisticated over-allocation strategy rather than simply doubling its capacity.
 
-Example:
-Base Address = 1000
-Element Size = 4 bytes
+বাংলা (BN):
+Dynamic array-এর capacity পূর্ণ হয়ে গেলে এটি automatically resize হতে পারে। তখন বড় memory block allocate করে existing element-গুলো নতুন memory-তে copy করা হয়।
 
-Index 0 -> 1000
-Index 1 -> 1004
-Index 2 -> 1008
-Index 3 -> 1012
+একটি সাধারণ growth strategy হলো:
+New Capacity = Old Capacity + (Old Capacity × 2)
 
-This is why array indexing is O(1). (এই কারণেই Array-এর Index-এ পৌঁছাতে O(1) সময় লাগে।)
+তবে Python-এর list শুধু capacity double করে না; এটি আরও sophisticated over-allocation strategy ব্যবহার করে।
 
---------------------------------------------------
-Why Arrays are Cache-Friendly (Array কেন Cache-Friendly?)
---------------------------------------------------
-Because array elements are stored in contiguous memory, the CPU loads nearby elements into the CPU cache together.
-(Contiguous Memory হওয়ার কারণে CPU একসাথে মেমরি থেকে ডেটা Cache-এ নিয়ে আসতে পারে।)
+---
 
-Memory
-+----+----+----+----+----+----+
-| 1  | 2  | 3  | 4  | 5  | 6  |
-+----+----+----+----+----+----+
+# Big O — Complexity
 
-CPU Cache
-+-----------------------+
-| 1 | 2 | 3 | 4 | 5 | 6 |
-+-----------------------+
+| Operation | Complexity | Why? |
+|---|---|---|
+| Access | O(1) | Direct index-based access |
+| Update | O(1) | Direct index-based access |
+| Append | O(1) Amortized | Usually there is available capacity |
+| Resize | O(n) | Existing elements must be copied |
+| Insert Beginning | O(n) | Elements must be shifted right |
+| Delete Beginning | O(n) | Elements must be shifted left |
+| Insert Middle | O(n) | Elements must be shifted |
+| Delete Middle | O(n) | Elements must be shifted |
+| Search / Traverse | O(n) | Linear scan may be required |
 
-Benefits: Faster traversal, Better CPU performance. (খুব দ্রুত কাজ করে।)
-* Linked Lists are not cache-friendly because nodes are scattered.
+## Complexity Explanation
 
---------------------------------------------------
-Python List Memory (Python List মেমরিতে কীভাবে থাকে)
---------------------------------------------------
-Python list stores references instead of actual values.
+English:
 
-Example: numbers = [10, 20, 30]
+- O(1): Accessing or updating an element by index is constant time.
+- O(1) Amortized: Most append operations are O(1), but occasionally resizing requires O(n).
+- O(n): Insertion/deletion at the beginning or middle requires shifting elements.
+- O(n): Searching an unsorted array may require checking every element.
 
-List Memory:
-+------+-------+-------+
-|  *   |   *   |   *   |
-+------+-------+-------+
-   |        |       |
-   v        v       v
-  10       20      30
+বাংলা (BN):
 
-Each "*" is a pointer (reference) to a Python object. (এখানে * হলো একটি Reference। List সরাসরি ডেটা রাখে না, ডেটার লোকেশন রাখে।)
+- O(1): Index ব্যবহার করে element access বা update করতে constant time লাগে।
+- O(1) Amortized: বেশিরভাগ append operation O(1), কিন্তু মাঝে মাঝে resize করার জন্য O(n) সময় লাগে।
+- O(n): Beginning বা middle-এ insert/delete করলে element shift করতে হয়।
+- O(n): Unsorted array-তে search করার সময় প্রতিটি element check করতে হতে পারে।
 
---------------------------------------------------
-Python Objects vs C Arrays (Python Object-এর মেমরি)
---------------------------------------------------
-C Array Stores raw integers. (সরাসরি সংখ্যা রাখে।)
-
-Python List: Each integer is a full Python object. (প্রতিটি সংখ্যা একটি Object।)
-Every object stores:
-- Value
-- Type information
-- Reference count
-- Object metadata
-
-Therefore, Python lists use significantly more memory than C arrays. (তাই Python List অনেক বেশি মেমরি ব্যবহার করে।)
-
---------------------------------------------------
-How Dynamic Array Allocates Memory (নতুন Memory কীভাবে Allocate করে)
---------------------------------------------------
-Initially:
-Capacity = 4, Size = 4
-+----+----+----+----+
-| 1  | 2  | 3  | 4  |
-+----+----+----+----+
-
-Append(5) -> Current array is full. Python allocates a larger block of memory. (অ্যারে ফুল হলে বড় মেমরি ব্লক নেয়।)
-
-CPython does NOT simply double. The real formula is: (CPython শুধু দ্বিগুণ করে না, আসল সূত্রটি হলো:)
-
-    new_capacity = (new_size + (new_size >> 3) + 6) rounded down to a multiple of 4
-
-- The (new_size >> 3) part is what gives the famous ~1.125x growth. (এই অংশটিই বিখ্যাত ~1.125x বৃদ্ধি দেয়।)
-- The + 6 constant makes SMALL lists grow much faster than 1.125x. (কিন্তু + 6 অংশটি ছোট List-কে 1.125x-এর চেয়ে অনেক দ্রুত বাড়ায়।)
-- So 1.125x is only the ASYMPTOTIC rate, true for large lists. (তাই 1.125x শুধু বড় List-এর ক্ষেত্রে প্রযোজ্য।)
-
-Real CPython capacity sequence: (আসল CPython Capacity ক্রম:)
-    0, 4, 8, 16, 24, 32, 40, 52, 64, 76, 92, ...
-       ^--^--^  small lists nearly double (ছোট List প্রায় দ্বিগুণ হয়)
-                  later growth slows to ~1.125x (পরে বৃদ্ধি কমে ~1.125x হয়)
-
-Here size 4 is full, so new_size = 5 -> (5 + 0 + 6) = 11 -> rounded to 8. (তাই Capacity 4 থেকে 8 হয়।)
-+----+----+----+----+----+----+----+----+
-| 1  | 2  | 3  | 4  |    |    |    |    |
-+----+----+----+----+----+----+----+----+
-
-Copy all existing elements, then add 5. (পুরোনো ডেটা কপি করে নতুন ডেটা বসায়।)
-+----+----+----+----+----+----+----+----+
-| 1  | 2  | 3  | 4  | 5  |    |    |    |
-+----+----+----+----+----+----+----+----+
-
-Old memory is released by the garbage collector.
-
-Because resizing doesn't happen on every append, append() is O(1) amortized. (সবসময় Resize হয় না, তাই Append এর Complexity O(1) Amortized.)
-
---------------------------------------------------
-Why Insert/Delete in Middle is O(n) (মাঝখানে Insert/Delete কেন O(n)?)
---------------------------------------------------
-Original:
-Index : 0  1  2  3  4
-Value : 1  2  3  4  5
-
-Insert 9 at index 2:
-1  2  9  3  4  5
-
-Elements shifted: (বাকি ডেটাগুলোকে ডানদিকে সরাতে হয়।)
-3 -> Shift right
-4 -> Shift right
-5 -> Shift right
-
-Worst Case: Insert at beginning (শুরুতে বসালে) -> All elements shift.
-Therefore, Time Complexity = O(n).
-
---------------------------------------------------
-Static vs Dynamic Arrays (স্ট্যাটিক বনাম ডায়নামিক অ্যারে)
---------------------------------------------------
-Static Array: Fixed size, memory allocated once, cannot grow. (নির্দিষ্ট সাইজ, একবারই মেমরি বরাদ্দ হয়, বড় করা যায় না।)
-Dynamic Array: Grows automatically, keeps spare capacity, copies on resize. (নিজে থেকেই বড় হয়, বাড়তি জায়গা রাখে, Resize-এর সময় কপি করে।)
-
-| Feature          | Static Array (C/C++) | Dynamic Array (Python list) |
-|------------------|----------------------|-----------------------------|
-| Size             | Fixed at compile time| Grows at runtime            |
-| Resize           | Not possible         | Automatic                   |
-| Extra capacity   | None                 | Yes (spare slots)           |
-| Append cost      | N/A                  | O(1) amortized              |
-| Memory overhead  | Lowest               | Higher (unused slots)       |
-| Speed            | Fastest              | Slightly slower             |
-
---------------------------------------------------
-Array vs Linked List (পার্থক্য)
---------------------------------------------------
-| Feature              | Array         | Linked List   |
-|----------------------|---------------|---------------|
-| Random Access        | O(1)          | O(n)          |
-| Insert Beginning     | O(n)          | O(1)          |
-| Delete Beginning     | O(n)          | O(1)          |
-| Insert End           | O(1) amortized| O(1)          |
-| Search               | O(n)          | O(n)          |
-| Cache Friendly       | Yes           | No            |
-| Memory Usage         | Lower         | Higher        |
-| Contiguous Memory    | Yes           | No            |
-
---------------------------------------------------
-Real-World Applications (বাস্তব ক্ষেত্রে ব্যবহার)
---------------------------------------------------
-Arrays are used in:
-- Image processing (pixels)
-- Matrices / Math
-- Dynamic Programming tables
-- Hash Tables (internal buckets)
-- Stacks & Queues
-
---------------------------------------------------
-Interview Tips (ইন্টারভিউ টিপস)
---------------------------------------------------
-Always explain:
-1. Why indexing is O(1) (Address calculation).
-2. Why insert/delete in the middle is O(n) (Element shifting).
-3. Why append() is amortized O(1) (Resizes occasionally, not always).
-4. Difference between size and capacity.
-5. Why arrays are cache-friendly (Contiguous memory).
-6. Why Python lists use more memory (They store object references, not raw data).
-
---------------------------------------------------
-Common Mistakes (সাধারণ ভুল)
---------------------------------------------------
-❌ Thinking Python List is a Linked List.
-✔ Python List is a Dynamic Array.
-
-❌ Thinking append() is always O(1).
-✔ It is O(1) amortized.
-
-❌ Thinking Python stores integers directly in the list.
-✔ The list stores references to integer objects.
-
---------------------------------------------------
-Complexity Summary
---------------------------------------------------
-| Operation          | Complexity     | Why?                       |
-|--------------------|----------------|----------------------------|
-| Access             | O(1)           | Direct address calculation |
-| Update             | O(1)           | Direct access              |
-| Append             | O(1) Amortized | Usually empty capacity     |
-| Resize             | O(n)           | Copy all elements          |
-| Insert Beginning   | O(n)           | Shift elements right       |
-| Delete Beginning   | O(n)           | Shift elements left        |
-| Insert/Del Middle  | O(n)           | Shift elements             |
-| Search / Traverse  | O(n)           | Linear scan                |
-
-==================================================
 """
 
 # ================================
