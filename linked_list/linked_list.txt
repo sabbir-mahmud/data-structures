@@ -1,0 +1,63 @@
+# Linked List
+
+## English
+
+Linked List is a linear data structure where elements are stored in separate nodes, and each node contains data and a link/reference to another node.
+
+Arrays have some issues that linked lists can solve. For example, when we insert an element in the middle of an array, the array needs to create space for the new element and move the existing elements to the next index.
+
+Arrays also have a dynamic resizing issue. When the array becomes full, it may need to create a new, larger memory area and copy the existing elements into it.
+
+But in a linked list, insertion and deletion do not require shifting existing elements or resizing the entire structure. Instead, we can change the links/references between nodes.
+
+However, linked lists do not provide direct access by index. To access a specific node, we usually need to start from the head and traverse the nodes.
+
+
+## বাংলা
+
+Linked List হলো একটি linear data structure যেখানে elements আলাদা আলাদা node-এর মধ্যে সংরক্ষিত থাকে এবং প্রতিটি node-এর মধ্যে data এবং অন্য node-এর একটি link/reference থাকে।
+
+Array-এর কিছু সমস্যা আছে যা linked list সমাধান করতে পারে। যেমন, array-এর মাঝখানে কোনো element insert করলে নতুন element-এর জন্য জায়গা তৈরি করতে হয় এবং existing elements-গুলোকে পরের index-এ move করতে হয়।
+
+Array-এর dynamic resizing-এর সমস্যাও আছে। Array full হয়ে গেলে নতুন এবং বড় memory area তৈরি করে existing elements-গুলোকে সেখানে copy করতে হতে পারে।
+
+কিন্তু linked list-এ insertion এবং deletion করার জন্য existing elements shift করা বা পুরো structure resize করার প্রয়োজন হয় না। এর পরিবর্তে nodes-এর মধ্যে থাকা links/references পরিবর্তন করা হয়।
+
+তবে linked list-এ index দিয়ে direct access করা যায় না। নির্দিষ্ট কোনো node access করতে সাধারণত head থেকে শুরু করে nodes traverse করতে হয়।
+
+
+# Big O
+
+## Singly Linked List
+
+Operation                          Big O
+------------------------------------------------
+Access by index                    O(n)
+Search by value                    O(n)
+Insert at beginning / head        O(1)
+Insert at end                      O(n)
+Insert at end with tail pointer   O(1)
+Insert in middle                   O(n)
+Insert after a known node         O(1)
+Delete from beginning / head      O(1)
+Delete from end                    O(n)
+Delete from end with doubly
+linked list + tail                 O(1)
+Delete a known node
+(singly, previous node known)      O(1)
+Delete a known node
+(doubly linked list)               O(1)
+Delete/search by value              O(n)
+Traverse                            O(n)
+Find length                         O(n)
+Find length with stored size       O(1)
+Reverse                             O(n)
+Space                               O(n)
+
+
+## Summary
+
+Best case:        O(1)
+Average case:     O(n)
+Worst case:       O(n)
+Space Complexity: O(n)
