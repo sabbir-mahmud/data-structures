@@ -1,0 +1,248 @@
+# Hash Table / Map
+
+## English
+
+Hash Table (also called Hash Map or Map) is a data structure that stores data in key-value pairs.
+
+Each key is passed through a hash function, which converts the key into a hash value/index. This index is used to determine where the corresponding value should be stored.
+
+For example, if we want to store a user's information, we can use the user's ID as the key and the user's information as the value.
+
+Key       Value
+-------------------------
+101       "Alice"
+102       "Bob"
+103       "Charlie"
+
+The main advantage of a hash table is that it provides very fast insert, search, update, and delete operations on average.
+
+Unlike an array, we do not need to search through every element to find a value. The hash function helps us directly determine the approximate location of the key.
+
+A hash table generally consists of:
+
+- Key — Used to identify a value.
+- Value — Data associated with the key.
+- Hash Function — Converts a key into a hash value/index.
+- Bucket — Storage location where key-value pairs can be placed.
+
+### Hash Function
+
+A hash function converts a key into a numerical hash value.
+
+key → hash function → index
+
+For example:
+
+"apple" → hash("apple") → 5
+
+The hash value can then be mapped to a bucket/index where the key-value pair is stored.
+
+### Collision
+
+A collision occurs when two different keys produce the same hash/index.
+
+"apple" → index 5
+"orange" → index 5
+
+Both keys cannot simply occupy the same single position, so hash tables need a collision resolution technique.
+
+Common techniques are:
+
+- Separate Chaining — Store multiple key-value pairs in the same bucket, commonly using a linked list or another structure.
+- Open Addressing — Find another available position in the table.
+  - Linear Probing
+  - Quadratic Probing
+  - Double Hashing
+
+### Key Uniqueness
+
+Keys in a hash map are generally unique.
+
+If we insert the same key again, the existing value is usually replaced or updated.
+
+"user_id": 101 → "Alice"
+
+"user_id": 101 → "Bob"
+
+The result becomes:
+
+"user_id": 101 → "Bob"
+
+### Hash Table vs Array
+
+An array provides efficient access when we know the numerical index:
+
+arr[5]
+
+A hash table provides efficient access using a key:
+
+users["alice"]
+
+The trade-off is that hash tables generally require additional memory for buckets, hashing metadata, and collision handling.
+
+### Hash Table vs Linked List
+
+A linked list requires traversal to search for a value, which takes O(n) time.
+
+A hash table can usually find a value in O(1) average time because the hash function helps locate the corresponding bucket directly.
+
+### Common Uses
+
+Hash tables/maps are commonly used for:
+
+- Dictionaries
+- Caches
+- Counting frequencies
+- Removing duplicates
+- Fast lookups
+- Database indexing concepts
+- Symbol tables
+- Memoization
+- Grouping data
+- Implementing sets
+- Counting occurrences
+
+
+## বাংলা
+
+Hash Table (যাকে Hash Map বা Map-ও বলা হয়) হলো একটি data structure যেখানে data key-value pair আকারে সংরক্ষণ করা হয়।
+
+প্রতিটি key-কে একটি hash function-এর মাধ্যমে hash value/index-এ রূপান্তর করা হয়। এই index ব্যবহার করে value কোথায় সংরক্ষণ করা হবে তা নির্ধারণ করা হয়।
+
+উদাহরণ:
+
+Key       Value
+-------------------------
+101       "Alice"
+102       "Bob"
+103       "Charlie"
+
+Hash table-এর প্রধান সুবিধা হলো সাধারণ ক্ষেত্রে insert, search, update এবং delete operation খুব দ্রুত করা যায়।
+
+Array-এর মতো প্রতিটি element একে একে search করার প্রয়োজন হয় না। Hash function key-এর সম্ভাব্য storage location দ্রুত নির্ধারণ করতে সাহায্য করে।
+
+একটি hash table সাধারণত কয়েকটি গুরুত্বপূর্ণ অংশ নিয়ে গঠিত:
+
+- Key — Value-কে identify করার জন্য ব্যবহৃত হয়।
+- Value — Key-এর সাথে associated data।
+- Hash Function — Key-কে hash value/index-এ convert করে।
+- Bucket — যেখানে key-value pair সংরক্ষণ করা হয়।
+
+### Hash Function
+
+Hash function একটি key-কে numerical hash value-তে convert করে।
+
+key → hash function → index
+
+উদাহরণ:
+
+"apple" → hash("apple") → 5
+
+এরপর এই hash value ব্যবহার করে নির্দিষ্ট bucket/index নির্বাচন করা হয়।
+
+### Collision
+
+যখন দুইটি আলাদা key একই hash/index তৈরি করে তখন তাকে collision বলা হয়।
+
+"apple" → index 5
+"orange" → index 5
+
+দুইটি key একই position-এ আসায় collision handle করার জন্য বিশেষ technique প্রয়োজন হয়।
+
+সাধারণ collision resolution techniques:
+
+- Separate Chaining — একই bucket-এর মধ্যে একাধিক key-value pair রাখা হয়।
+- Open Addressing — অন্য একটি available position খুঁজে নেওয়া হয়।
+  - Linear Probing
+  - Quadratic Probing
+  - Double Hashing
+
+### Key Uniqueness
+
+Hash map-এ সাধারণত key unique থাকে।
+
+একই key আবার insert করলে সাধারণত আগের value replace/update হয়।
+
+"user_id": 101 → "Alice"
+
+"user_id": 101 → "Bob"
+
+Result:
+
+"user_id": 101 → "Bob"
+
+### Hash Table vs Array
+
+Array-তে numerical index জানা থাকলে দ্রুত access করা যায়:
+
+arr[5]
+
+Hash table-এ key ব্যবহার করে দ্রুত access করা যায়:
+
+users["alice"]
+
+তবে hash table সাধারণত bucket, hashing metadata এবং collision handling-এর জন্য অতিরিক্ত memory ব্যবহার করে।
+
+### Hash Table vs Linked List
+
+Linked list-এ কোনো value search করতে nodes traverse করতে হয়, তাই সাধারণত O(n) সময় লাগে।
+
+Hash table-এ hash function ব্যবহার করে সংশ্লিষ্ট bucket দ্রুত খুঁজে পাওয়া যায়, তাই সাধারণ ক্ষেত্রে lookup O(1) হয়।
+
+### Common Uses
+
+Hash table/map সাধারণত ব্যবহার করা হয়:
+
+- Dictionary
+- Cache
+- Frequency counting
+- Duplicate removal
+- Fast lookup
+- Database indexing-এর concepts
+- Symbol table
+- Memoization
+- Data grouping
+- Set implementation
+- Occurrence counting
+
+
+# Big O
+
+## Hash Table / Map
+
+Operation                              Average       Worst Case
+----------------------------------------------------------------
+Access / Get by key                    O(1)          O(n)
+Search by key                          O(1)          O(n)
+Insert / Put                            O(1)          O(n)
+Update by key                           O(1)          O(n)
+Delete by key                           O(1)          O(n)
+Check key exists                        O(1)          O(n)
+Traverse all elements                   O(n)          O(n)
+Find length / size                      O(1)          O(1)
+Get all keys                            O(n)          O(n)
+Get all values                          O(n)          O(n)
+Get all key-value pairs                 O(n)          O(n)
+Space                                   O(n)          O(n)
+
+### Why Worst Case O(n)?
+
+Worst case সাধারণত collision-এর কারণে হতে পারে। যদি অনেকগুলো key একই bucket-এ চলে আসে, তাহলে সেই bucket-এর একাধিক element search করতে হতে পারে।
+
+ভালো hash function এবং appropriate table sizing থাকলে average performance সাধারণত O(1) থাকে।
+
+### Resizing / Rehashing
+
+Hash table-এর capacity কম হয়ে গেলে table resize করতে হতে পারে। তখন existing elements নতুন table-এ আবার hash করে রাখতে হয়।
+
+একটি resize/rehashing operation-এর জন্য O(n) সময় লাগতে পারে।
+
+তবে resize সব insertion-এর সময় হয় না, তাই সাধারণভাবে insertion-এর amortized time O(1) ধরা হয়。
+
+
+## Summary
+
+Best case:        O(1)
+Average case:     O(1)
+Worst case:       O(n)
+Space Complexity: O(n)
