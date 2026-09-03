@@ -1,0 +1,215 @@
+# Stack
+
+## English
+
+Stack is a linear data structure that follows the LIFO (Last In, First Out) principle.
+
+This means the element that is inserted last is the first element to be removed.
+
+For example:
+
+Push:  10
+Push:  20
+Push:  30
+
+Stack:
+Top → 30
+      20
+      10
+
+If we perform pop(), 30 will be removed first.
+
+A stack mainly uses two operations:
+
+- Push — Adds an element to the top of the stack.
+- Pop — Removes the element from the top of the stack.
+
+Other common operations are:
+
+- Peek / Top — Returns the top element without removing it.
+- isEmpty — Checks whether the stack is empty.
+- Size — Returns the number of elements in the stack.
+
+### LIFO
+
+LIFO means Last In, First Out.
+
+Example:
+
+Push 10
+Push 20
+Push 30
+
+Pop → 30
+Pop → 20
+Pop → 10
+
+The last inserted element (30) is removed first.
+
+### Stack Implementation
+
+A stack can be implemented using:
+
+- Array
+- Dynamic Array
+- Linked List
+
+Using an array/dynamic array, the end of the array is commonly used as the top of the stack.
+
+Using a linked list, the head can be used as the top of the stack.
+
+### Stack Overflow
+
+Stack overflow occurs when we try to push a new element into a stack that has reached its maximum capacity.
+
+This is mainly relevant to fixed-size stacks.
+
+### Stack Underflow
+
+Stack underflow occurs when we try to pop or access an element from an empty stack.
+
+### Common Uses
+
+Stacks are commonly used for:
+
+- Function call management
+- Recursion
+- Undo/Redo operations
+- Browser history
+- Expression evaluation
+- Parentheses matching
+- Depth-First Search (DFS)
+- Backtracking
+- Syntax parsing
+- Reversing data
+
+
+## বাংলা
+
+Stack হলো একটি linear data structure যা LIFO (Last In, First Out) principle অনুসরণ করে।
+
+এর অর্থ হলো, যে element সবার শেষে insert করা হয়, সেটিই সবার আগে remove হয়।
+
+উদাহরণ:
+
+Push:  10
+Push:  20
+Push:  30
+
+Stack:
+Top → 30
+      20
+      10
+
+যদি pop() করা হয়, তাহলে প্রথমে 30 remove হবে।
+
+Stack-এর প্রধান দুইটি operation হলো:
+
+- Push — Stack-এর top-এ নতুন element যোগ করে।
+- Pop — Stack-এর top থেকে element remove করে।
+
+আরও কিছু common operation:
+
+- Peek / Top — Top element remove না করে return করে।
+- isEmpty — Stack empty কিনা check করে।
+- Size — Stack-এ মোট কতটি element আছে তা return করে।
+
+### LIFO
+
+LIFO-এর অর্থ Last In, First Out।
+
+উদাহরণ:
+
+Push 10
+Push 20
+Push 30
+
+Pop → 30
+Pop → 20
+Pop → 10
+
+সবশেষে insert করা element (30) সবার আগে remove হয়।
+
+### Stack Implementation
+
+Stack বিভিন্নভাবে implement করা যায়:
+
+- Array
+- Dynamic Array
+- Linked List
+
+Array/dynamic array ব্যবহার করলে সাধারণত array-এর শেষ অংশকে stack-এর top হিসেবে ব্যবহার করা হয়।
+
+Linked list ব্যবহার করলে head-কে stack-এর top হিসেবে ব্যবহার করা যায়।
+
+### Stack Overflow
+
+Stack-এর maximum capacity পূর্ণ হয়ে যাওয়ার পর নতুন element push করার চেষ্টা করলে stack overflow হতে পারে।
+
+এটি মূলত fixed-size stack-এর ক্ষেত্রে গুরুত্বপূর্ণ।
+
+### Stack Underflow
+
+Empty stack থেকে pop অথবা element access করার চেষ্টা করলে stack underflow হয়।
+
+### Common Uses
+
+Stack সাধারণত ব্যবহার করা হয়:
+
+- Function call management
+- Recursion
+- Undo/Redo operations
+- Browser history
+- Expression evaluation
+- Parentheses matching
+- Depth-First Search (DFS)
+- Backtracking
+- Syntax parsing
+- Data reverse করা
+
+
+# Big O
+
+## Array / Dynamic Array Based Stack
+
+Operation                              Average       Worst Case
+----------------------------------------------------------------
+Push                                   O(1)          O(n)
+Pop                                    O(1)          O(1)
+Peek / Top                             O(1)          O(1)
+isEmpty                                O(1)          O(1)
+Size                                   O(1)          O(1)
+Search                                 O(n)          O(n)
+Access by index                        O(1)          O(1)
+Traverse                               O(n)          O(n)
+Space                                  O(n)          O(n)
+
+### Why Push Worst Case O(n)?
+
+Dynamic array-এর capacity পূর্ণ হয়ে গেলে নতুন এবং বড় memory area allocate করতে হতে পারে এবং existing elements সেখানে copy করতে হতে পারে।
+
+তাই একটি নির্দিষ্ট push operation-এর worst case O(n) হতে পারে।
+
+তবে resizing-এর কারণে প্রতিটি push ধীর হয় না। তাই push-এর amortized time O(1)।
+
+## Linked List Based Stack
+
+Operation                              Time
+--------------------------------------------
+Push                                   O(1)
+Pop                                    O(1)
+Peek / Top                             O(1)
+isEmpty                                O(1)
+Size                                   O(1)*
+Search                                 O(n)
+Traverse                               O(n)
+Space                                  O(n)
+
+* যদি stack-এর size আলাদাভাবে store করা হয়, তাহলে size O(1)।
+
+## Summary
+
+Best case:        O(1)
+Average case:     O(1)
+Worst case:       O(n)
+Space Complexity: O(n)
