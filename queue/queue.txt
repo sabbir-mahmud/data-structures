@@ -1,0 +1,320 @@
+# Queue
+
+## English
+
+Queue is a linear data structure that follows the FIFO (First In, First Out) principle.
+
+This means the element that is inserted first is the first element to be removed.
+
+For example:
+
+Enqueue: 10
+Enqueue: 20
+Enqueue: 30
+
+Queue:
+Front → 10
+        20
+        30 ← Rear
+
+If we perform dequeue(), 10 will be removed first.
+
+A queue mainly uses two operations:
+
+- Enqueue — Adds an element to the rear/end of the queue.
+- Dequeue — Removes an element from the front of the queue.
+
+Other common operations are:
+
+- Peek / Front — Returns the front element without removing it.
+- Rear / Back — Returns the last element without removing it.
+- isEmpty — Checks whether the queue is empty.
+- Size — Returns the number of elements in the queue.
+
+### FIFO
+
+FIFO means First In, First Out.
+
+Example:
+
+Enqueue 10
+Enqueue 20
+Enqueue 30
+
+Dequeue → 10
+Dequeue → 20
+Dequeue → 30
+
+The first inserted element (10) is removed first.
+
+### Queue Implementation
+
+A queue can be implemented using:
+
+- Array
+- Dynamic Array
+- Linked List
+- Circular Array
+- Deque
+
+For an efficient queue implementation, we generally maintain both front and rear positions.
+
+### Circular Queue
+
+A circular queue connects the end of the queue back to the beginning.
+
+This allows unused spaces at the beginning of an array to be reused.
+
+### Queue Overflow
+
+Queue overflow occurs when we try to enqueue a new element into a queue that has reached its maximum capacity.
+
+This is mainly relevant to fixed-size queues.
+
+### Queue Underflow
+
+Queue underflow occurs when we try to dequeue or access an element from an empty queue.
+
+### Types of Queue
+
+Common types of queues include:
+
+- Simple Queue — Follows FIFO.
+- Circular Queue — The last position connects back to the first position.
+- Priority Queue — Elements are removed based on priority.
+- Deque — Elements can be inserted and removed from both ends.
+
+### Queue vs Stack
+
+Queue follows FIFO:
+
+First In → First Out
+
+Stack follows LIFO:
+
+Last In → First Out
+
+Example:
+
+Queue:
+10 → 20 → 30
+10 comes out first
+
+Stack:
+10 → 20 → 30
+30 comes out first
+
+### Common Uses
+
+Queues are commonly used for:
+
+- CPU scheduling
+- Task scheduling
+- Printer queues
+- Breadth-First Search (BFS)
+- Message queues
+- Request processing
+- Network packet processing
+- Producer-Consumer systems
+- Buffering
+- Event handling
+
+
+## বাংলা
+
+Queue হলো একটি linear data structure যা FIFO (First In, First Out) principle অনুসরণ করে।
+
+এর অর্থ হলো, যে element সবার আগে insert করা হয়, সেটিই সবার আগে remove হয়।
+
+উদাহরণ:
+
+Enqueue: 10
+Enqueue: 20
+Enqueue: 30
+
+Queue:
+Front → 10
+        20
+        30 ← Rear
+
+যদি dequeue() করা হয়, তাহলে প্রথমে 10 remove হবে।
+
+Queue-এর প্রধান দুইটি operation হলো:
+
+- Enqueue — Queue-এর rear/end-এ নতুন element যোগ করে।
+- Dequeue — Queue-এর front থেকে element remove করে।
+
+আরও কিছু common operation:
+
+- Peek / Front — Front element remove না করে return করে।
+- Rear / Back — শেষ element remove না করে return করে।
+- isEmpty — Queue empty কিনা check করে।
+- Size — Queue-তে মোট কতটি element আছে তা return করে।
+
+### FIFO
+
+FIFO-এর অর্থ First In, First Out।
+
+উদাহরণ:
+
+Enqueue 10
+Enqueue 20
+Enqueue 30
+
+Dequeue → 10
+Dequeue → 20
+Dequeue → 30
+
+সবচেয়ে আগে insert করা element (10) সবার আগে remove হয়।
+
+### Queue Implementation
+
+Queue বিভিন্নভাবে implement করা যায়:
+
+- Array
+- Dynamic Array
+- Linked List
+- Circular Array
+- Deque
+
+Efficient queue implementation-এর জন্য সাধারণত front এবং rear position maintain করা হয়।
+
+### Circular Queue
+
+Circular queue-তে queue-এর শেষ position আবার প্রথম position-এর সাথে logically connect থাকে।
+
+এতে array-এর শুরুতে থাকা unused space আবার ব্যবহার করা যায়।
+
+### Queue Overflow
+
+Queue-এর maximum capacity পূর্ণ হয়ে যাওয়ার পর নতুন element enqueue করার চেষ্টা করলে queue overflow হতে পারে।
+
+এটি মূলত fixed-size queue-এর ক্ষেত্রে গুরুত্বপূর্ণ।
+
+### Queue Underflow
+
+Empty queue থেকে dequeue অথবা element access করার চেষ্টা করলে queue underflow হয়।
+
+### Types of Queue
+
+Queue-এর common types:
+
+- Simple Queue — FIFO principle অনুসরণ করে।
+- Circular Queue — শেষ position আবার প্রথম position-এর সাথে connect থাকে।
+- Priority Queue — Priority অনুযায়ী element remove হয়।
+- Deque — দুই দিক থেকেই element insert এবং remove করা যায়।
+
+### Queue vs Stack
+
+Queue FIFO অনুসরণ করে:
+
+First In → First Out
+
+Stack LIFO অনুসরণ করে:
+
+Last In → First Out
+
+উদাহরণ:
+
+Queue:
+10 → 20 → 30
+10 প্রথমে বের হবে
+
+Stack:
+10 → 20 → 30
+30 প্রথমে বের হবে
+
+### Common Uses
+
+Queue সাধারণত ব্যবহার করা হয়:
+
+- CPU scheduling
+- Task scheduling
+- Printer queues
+- Breadth-First Search (BFS)
+- Message queues
+- Request processing
+- Network packet processing
+- Producer-Consumer systems
+- Buffering
+- Event handling
+
+
+# Big O
+
+## Array / Dynamic Array Based Queue
+
+Operation                              Average       Worst Case
+----------------------------------------------------------------
+Enqueue                                O(1)          O(n)
+Dequeue                                O(1)*         O(n)
+Peek / Front                           O(1)          O(1)
+Rear / Back                            O(1)          O(1)
+isEmpty                                O(1)          O(1)
+Size                                   O(1)          O(1)
+Search                                 O(n)          O(n)
+Access by index                        O(1)          O(1)
+Traverse                               O(n)          O(n)
+Space                                  O(n)          O(n)
+
+* Dequeue is O(1) when the queue uses a front pointer/index and does not shift all elements.
+
+### Why Dequeue Can Be O(n)?
+
+যদি সাধারণ array থেকে প্রথম element remove করার পর remaining elements-গুলোকে এক position left-এ shift করা হয়, তাহলে dequeue-এর জন্য O(n) সময় লাগতে পারে।
+
+Efficient queue implementation-এ front pointer/index ব্যবহার করলে elements shift করার প্রয়োজন হয় না, তাই dequeue O(1) করা যায়।
+
+
+## Linked List Based Queue
+
+Operation                              Time
+--------------------------------------------
+Enqueue                                O(1)*
+Dequeue                                O(1)
+Peek / Front                           O(1)
+Rear / Back                            O(1)*
+isEmpty                                O(1)
+Size                                   O(1)**
+Search                                 O(n)
+Traverse                               O(n)
+Space                                  O(n)
+
+* Front এবং rear/tail pointer maintain করলে।
+
+** Queue-এর size আলাদাভাবে store করলে।
+
+
+## Circular Queue
+
+Operation                              Time
+--------------------------------------------
+Enqueue                                O(1)
+Dequeue                                O(1)
+Peek / Front                           O(1)
+Rear / Back                            O(1)
+isEmpty                                O(1)
+Size                                   O(1)
+Search                                 O(n)
+Traverse                               O(n)
+Space                                  O(n)
+
+
+## Priority Queue
+
+Operation                              Binary Heap
+-----------------------------------------------------
+Insert                                 O(log n)
+Peek highest/lowest priority            O(1)
+Remove highest/lowest priority          O(log n)
+Search                                 O(n)
+Build heap                              O(n)
+Space                                   O(n)
+
+
+## Summary
+
+Best case:        O(1)
+Average case:     O(1)
+Worst case:       O(n)
+Space Complexity: O(n)
