@@ -1,0 +1,141 @@
+# Binary Tree
+
+## English
+
+Binary Tree is a non-linear hierarchical data structure where each node can have at most two children.
+
+The two children are called:
+- Left Child
+- Right Child
+
+Example:
+        A
+       / \
+      B   C
+     / \
+    D   E
+
+- A → Root
+- B, C → Children of A
+- D, E → Children of B
+- D, E, C → Leaf nodes
+
+### Important Terms
+
+- Root → Top node of the tree.
+- Parent → Node that has children.
+- Child → Node directly below a parent.
+- Leaf → Node with no children.
+- Sibling → Nodes with the same parent.
+- Edge → Connection between two nodes.
+- Depth → Distance from root to a node.
+- Height → Longest path from a node to a leaf.
+- Degree → Number of children, maximum 2.
+
+### Traversal
+
+- Preorder → Root → Left → Right
+- Inorder → Left → Root → Right
+- Postorder → Left → Right → Root
+- Level Order → Level by level
+
+Example:
+        A
+       / \
+      B   C
+
+Preorder:   A B C
+Inorder:    B A C
+Postorder:  B C A
+
+### Common Uses
+
+- Expression trees
+- Hierarchy representation
+- Searching structures
+- Heaps
+- Syntax trees
+- Decision trees
+
+
+## বাংলা
+
+Binary Tree হলো একটি non-linear hierarchical data structure, যেখানে প্রতিটি node-এর সর্বোচ্চ দুইটি child থাকতে পারে।
+
+দুইটি child হলো:
+- Left Child
+- Right Child
+
+উদাহরণ:
+        A
+       / \
+      B   C
+     / \
+    D   E
+
+- A → Root
+- B, C → A-এর children
+- D, E → B-এর children
+- D, E, C → Leaf nodes
+
+### Important Terms
+
+- Root → Tree-এর সবচেয়ে উপরের node।
+- Parent → যে node-এর children আছে।
+- Child → Parent-এর সরাসরি নিচের node।
+- Leaf → যার কোনো child নেই।
+- Sibling → একই parent-এর children।
+- Edge → দুইটি node-এর connection।
+- Depth → Root থেকে node পর্যন্ত distance।
+- Height → Node থেকে leaf পর্যন্ত longest path।
+- Degree → Children-এর সংখ্যা, সর্বোচ্চ 2।
+
+### Traversal
+
+- Preorder → Root → Left → Right
+- Inorder → Left → Root → Right
+- Postorder → Left → Right → Root
+- Level Order → Level by level
+
+উদাহরণ:
+        A
+       / \
+      B   C
+
+Preorder:   A B C
+Inorder:    B A C
+Postorder:  B C A
+
+### Common Uses
+
+- Expression trees
+- Hierarchy representation
+- Searching structures
+- Heaps
+- Syntax trees
+- Decision trees
+
+
+# Big O
+
+## Binary Tree
+
+Operation                  Average       Worst Case
+----------------------------------------------------
+Search                     O(n)          O(n)
+Insert                     O(n)          O(n)
+Delete                     O(n)          O(n)
+Preorder Traversal         O(n)          O(n)
+Inorder Traversal          O(n)          O(n)
+Postorder Traversal        O(n)          O(n)
+Level Order                O(n)          O(n)
+Find Height                O(n)          O(n)
+Space                      O(n)          O(n)
+
+
+## Summary
+
+Best case:        O(1)
+Average case:     O(n)
+Worst case:       O(n)
+Space Complexity: O(n)

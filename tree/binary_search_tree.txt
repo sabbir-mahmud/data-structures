@@ -1,0 +1,175 @@
+# Binary Search Tree (BST)
+
+## English
+
+Binary Search Tree (BST) is a binary tree where every node follows an ordering rule:
+
+Left Subtree < Root < Right Subtree
+
+Example:
+        50
+       /  \
+     30    70
+    / \    / \
+   20 40  60 80
+
+For every node:
+- Values in the left subtree are smaller.
+- Values in the right subtree are larger.
+
+This ordering makes searching more efficient than a normal binary tree when the tree is balanced.
+
+### Search
+
+To search for a value:
+- If value == root → Found.
+- If value < root → Go left.
+- If value > root → Go right.
+
+### Insert
+
+A new value is inserted according to the BST ordering rule.
+
+### Delete
+
+Deleting a node has three common cases:
+- Leaf node → Simply remove it.
+- One child → Replace the node with its child.
+- Two children → Replace it with its inorder successor or predecessor.
+
+### Inorder Traversal
+
+One important property of BST:
+
+Inorder traversal produces sorted order.
+
+Example:
+        50
+       /  \
+     30    70
+    / \    / \
+   20 40  60 80
+
+Inorder:
+20 → 30 → 40 → 50 → 60 → 70 → 80
+
+### Balanced vs Unbalanced BST
+
+Balanced BST:
+        50
+       /  \
+      30   70
+
+The height remains relatively small.
+
+Unbalanced BST:
+10
+  \
+   20
+     \
+      30
+        \
+         40
+
+It can become similar to a linked list, making operations slower.
+
+### Common Uses
+
+- Fast searching
+- Ordered data
+- Maintaining sorted data
+- Range queries
+- Finding minimum/maximum
+- Finding predecessor/successor
+
+
+## বাংলা
+
+Binary Search Tree (BST) হলো এমন একটি binary tree যেখানে প্রতিটি node একটি নির্দিষ্ট ordering rule অনুসরণ করে:
+
+Left Subtree < Root < Right Subtree
+
+উদাহরণ:
+        50
+       /  \
+     30    70
+    / \    / \
+   20 40  60 80
+
+প্রতিটি node-এর ক্ষেত্রে:
+- Left subtree-এর values ছোট।
+- Right subtree-এর values বড়।
+
+এই ordering-এর কারণে balanced BST-তে normal binary tree-এর তুলনায় searching দ্রুত করা যায়।
+
+### Search
+
+কোনো value search করার সময়:
+- value == root → Found
+- value < root → Left-এ যাও
+- value > root → Right-এ যাও
+
+### Insert
+
+BST-এর ordering rule অনুসরণ করে নতুন value insert করা হয়।
+
+### Delete
+
+Delete করার তিনটি common case:
+- Leaf node → সরাসরি remove করা হয়।
+- One child → Child দিয়ে node-টি replace করা হয়।
+- Two children → Inorder successor অথবা predecessor দিয়ে replace করা হয়।
+
+### Inorder Traversal
+
+BST-এর একটি গুরুত্বপূর্ণ property:
+
+Inorder traversal sorted order দেয়।
+
+উদাহরণ:
+20 → 30 → 40 → 50 → 60 → 70 → 80
+
+### Balanced vs Unbalanced BST
+
+Balanced BST-তে tree-এর height তুলনামূলকভাবে ছোট থাকে।
+
+Unbalanced BST একদিকে বেশি বড় হয়ে গেলে linked list-এর মতো হতে পারে এবং operations ধীর হয়ে যায়।
+
+### Common Uses
+
+- Fast searching
+- Ordered data
+- Sorted data maintain করা
+- Range queries
+- Minimum/maximum খোঁজা
+- Predecessor/successor খোঁজা
+
+
+# Big O
+
+## Binary Search Tree
+
+Operation                  Balanced        Worst Case
+-------------------------------------------------------
+Search                     O(log n)        O(n)
+Insert                     O(log n)        O(n)
+Delete                     O(log n)        O(n)
+Find Minimum               O(log n)        O(n)
+Find Maximum               O(log n)        O(n)
+Find Predecessor           O(log n)        O(n)
+Find Successor             O(log n)        O(n)
+Inorder Traversal          O(n)            O(n)
+Preorder Traversal         O(n)            O(n)
+Postorder Traversal        O(n)            O(n)
+Find Height                O(n)            O(n)
+Space                      O(n)            O(n)
+
+
+## Summary
+
+Best case:        O(1)
+Average case:     O(log n)*
+Worst case:       O(n)
+Space Complexity: O(n)
+
+* Search/insert/delete-এর ক্ষেত্রে balanced BST-এর জন্য সাধারণভাবে O(log n)।

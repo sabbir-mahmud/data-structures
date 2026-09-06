@@ -1,0 +1,142 @@
+## English
+
+General Tree is a non-linear hierarchical data structure where nodes are connected using parent-child relationships.
+
+A node can have zero, one, or many children. Unlike a binary tree, there is no limit of two children.
+
+Example:
+        A
+      / | \
+     B  C  D
+    / \
+   E   F
+
+- A → Root
+- B, C, D → Children of A
+- E, F → Children of B
+- E, F, C, D → Leaf nodes
+- B → Parent of E, F
+- B, C, D → Siblings
+
+### Important Terms
+
+- Root → Top node of the tree.
+- Parent → Node that has children.
+- Child → Node directly below a parent.
+- Sibling → Nodes with the same parent.
+- Leaf → Node with no children.
+- Edge → Connection between two nodes.
+- Depth → Distance from root to a node.
+- Height → Longest path from a node to a leaf.
+- Degree → Number of children of a node.
+- Subtree → A node with all of its descendants.
+
+### Traversal
+
+- DFS → Goes deep before moving to the next branch.
+- BFS → Visits nodes level by level.
+
+DFS usually uses recursion/stack.
+BFS usually uses a queue.
+
+### Representation
+
+Node
+├── data
+└── children[]
+
+### Common Uses
+
+- File systems
+- Folder structures
+- Organization hierarchy
+- HTML/XML DOM
+- Categories and subcategories
+- Menus
+- Game hierarchies
+
+
+## বাংলা
+
+General Tree হলো একটি non-linear hierarchical data structure, যেখানে nodes parent-child relationship-এর মাধ্যমে connected থাকে।
+
+একটি node-এর zero, one, অথবা অনেক children থাকতে পারে। Binary tree-এর মতো দুইটি child-এর limit নেই।
+
+Example:
+        A
+      / | \
+     B  C  D
+    / \
+   E   F
+
+- A → Root
+- B, C, D → A-এর children
+- E, F → B-এর children
+- E, F, C, D → Leaf nodes
+- B → E, F-এর parent
+- B, C, D → Siblings
+
+### গুরুত্বপূর্ণ Terms
+
+- Root → Tree-এর সবচেয়ে উপরের node।
+- Parent → যে node-এর children আছে।
+- Child → Parent-এর সরাসরি নিচের node।
+- Sibling → একই parent-এর children।
+- Leaf → যে node-এর কোনো child নেই।
+- Edge → দুইটি node-এর connection।
+- Depth → Root থেকে কোনো node পর্যন্ত distance।
+- Height → কোনো node থেকে leaf পর্যন্ত longest path।
+- Degree → কোনো node-এর children-এর সংখ্যা।
+- Subtree → একটি node এবং তার সব descendants।
+
+### Traversal
+
+- DFS → আগে গভীরে যায়, পরে অন্য branch-এ যায়।
+- BFS → Level by level node visit করে।
+
+DFS সাধারণত recursion/stack ব্যবহার করে।
+BFS সাধারণত queue ব্যবহার করে।
+
+### Representation
+
+Node
+├── data
+└── children[]
+
+### Common Uses
+
+- File systems
+- Folder structures
+- Organization hierarchy
+- HTML/XML DOM
+- Categories and subcategories
+- Menus
+- Game hierarchies
+
+
+# Big O
+
+## General Tree
+
+Operation                  Time
+--------------------------------
+Search                     O(n)
+Insert*                    O(1)
+Delete*                    O(1)
+DFS                        O(n)
+BFS                        O(n)
+Find Height                O(n)
+Find Depth                 O(n)
+Count Nodes                O(n)
+Traverse                   O(n)
+Space                      O(n)
+
+* Parent/location আগে থেকে জানা থাকলে।
+
+
+## Summary
+
+Best case: O(1)
+Average case: O(n)
+Worst case: O(n)
+Space Complexity: O(n)
